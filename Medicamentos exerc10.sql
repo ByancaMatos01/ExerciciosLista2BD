@@ -40,21 +40,21 @@ INSERT INTO medicamento
 VALUES
 ('Acetato de medroxiprogesterona', '150 mg/ml', 'Ampola', 6.700),
 ('Aciclovir', '200mg/comp.', 'Comprimido', 0.280),
-('¡cido AcetilsalicÌlico', '500mg/comp.', 'Comprimido', 0.035),
-('¡cido AcetilsalicÌlico', '100mg/comp.', 'Comprimido', 0.030),
-('¡cido FÛlico', '5mg/comp.', 'Comprimido', 0.054),
-('Albendazol', '400mg/comp. mastig·vel', 'Comprimido', 0.560),
+('√Åcido Acetilsalic√≠lico', '500mg/comp.', 'Comprimido', 0.035),
+('√Åcido Acetilsalic√≠lico', '100mg/comp.', 'Comprimido', 0.030),
+('√Åcido F√≥lico', '5mg/comp.', 'Comprimido', 0.054),
+('Albendazol', '400mg/comp. mastig√°vel', 'Comprimido', 0.560),
 ('Alopurinol', '100mg/comp.', 'Comprimido', 0.080),
 ('Amiodarona', '200mg/comp.', 'Comprimido', 0.200),
 ('Amitriptilina(Cloridrato)', '25mg/comp.', 'Comprimido', 0.220),
-('Amoxicilina', '500mg/c·ps.', 'C·psula', 0.190)
+('Amoxicilina', '500mg/c√°ps.', 'C√°psula', 0.190)
 
 INSERT INTO cliente
 VALUES
-('34390898700', 'Maria ZÈlia', 'Anhaia', 65, 'Barra Funda', '92103762'),
+('34390898700', 'Maria Z√©lia', 'Anhaia', 65, 'Barra Funda', '92103762'),
 ('21345986290', 'Roseli Silva', 'Xv. De Novembro', 987, 'Centro', '82198763'),
-('86927981825', 'Carlos Campos', 'Volunt·rios da P·tria', 1276, 'Santana', '98172361'),
-('31098120900', 'Jo„o Perdizes', 'Carlos de Campos', 90, 'Pari', '61982371')
+('86927981825', 'Carlos Campos', 'Volunt√°rios da P√°tria', 1276, 'Santana', '98172361'),
+('31098120900', 'Jo√£o Perdizes', 'Carlos de Campos', 90, 'Pari', '61982371')
 
 INSERT INTO venda
 VALUES
@@ -72,8 +72,8 @@ select*from  medicamento
 select*from venda
 
 --Consultar:
---1) Nome, apresentaÁ„o, unidade e valor unit·rio dos remÈdios que ainda n„o foram vendidos. Caso a unidade de cadastro seja comprimido, mostrar Comp.
-select med.nome as 'nome do medicamento', med.apresentacao as 'ApresentaÁ„o do medicamento', med.preco_proposto as 'preco unit·rio',
+--1) Nome, apresenta√ß√£o, unidade e valor unit√°rio dos rem√©dios que ainda n√£o foram vendidos. Caso a unidade de cadastro seja comprimido, mostrar Comp.
+select med.nome as 'nome do medicamento', med.apresentacao as 'Apresenta√ß√£o do medicamento', med.preco_proposto as 'preco unit√°rio',
 Case 
 When med.unidade_cadastro like 'comprimido%' then REPLACE(med.unidade_cadastro, 'comprimido', 'comp')
 else med.unidade_cadastro
@@ -87,10 +87,10 @@ from cliente cli inner join venda ven on cli.cpf=ven.cpf_cliente
  inner join medicamento med on med.codigo=ven.codigo_medicamento
  where med.nome like'%Amiodarona%'
 
---3) CPF do cliente, endereÁo concatenado, nome do medicamento (como nome de remÈdio), apresentaÁ„o do remÈdio, unidade, 
--- preÁo proposto, quantidade vendida e valor total dos remÈdios vendidos a Maria ZÈlia.
+--3) CPF do cliente, endere√ßo concatenado, nome do medicamento (como nome de rem√©dio), apresenta√ß√£o do rem√©dio, unidade, 
+-- pre√ßo proposto, quantidade vendida e valor total dos rem√©dios vendidos a Maria Z√©lia.
 select cli.cpf  as 'CPF', cli.rua+'-'+ cli.bairro+'-'+cast(cli.numero as varchar) as 'Enderco', med.nome as 'Nome do medicamento',
-med.preco_proposto as 'preco unit·rio',med.unidade_cadastro as 'Unidade',vend.quantidade as 'Quantidade', vend.valor_total as 'Valor total'
+med.preco_proposto as 'preco unit√°rio',med.unidade_cadastro as 'Unidade',vend.quantidade as 'Quantidade', vend.valor_total as 'Valor total'
 from cliente cli inner join venda vend on cli.cpf=vend.cpf_cliente
 inner join medicamento med on vend.codigo_medicamento=med.codigo
 where cli.nome like 'Maria%'
